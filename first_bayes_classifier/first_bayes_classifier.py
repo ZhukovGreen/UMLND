@@ -40,6 +40,8 @@ naive_bayes = MultinomialNB()
 _ = naive_bayes.fit(training_data, y_train)
 predictions = naive_bayes.predict(testing_data)
 
+df.drop()
+
 print('Accuracy score: ', format(accuracy_score(y_test, predictions)))
 print('Precision score: ', format(precision_score(y_test, predictions)))
 print('Recall score: ', format(recall_score(y_test, predictions)))
