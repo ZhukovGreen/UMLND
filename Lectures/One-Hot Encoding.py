@@ -40,3 +40,5 @@ ohe = OneHotEncoder()
 
 xt = ohe.fit_transform(X.values)  # TODO
 onehotlabels = xt
+
+print xt
