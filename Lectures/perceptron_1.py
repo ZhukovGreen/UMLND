@@ -35,6 +35,7 @@ class Perceptron:
         # First calculate the strength with which the perceptron fires
         strength = np.dot(values, self.weights)
         # Then return 0 or 1 depending on strength compared to threshold
+        print('strength: ', strength)
         return int(strength > self.threshold)
 
     def update(self, values, train, eta=.1):
@@ -46,19 +47,22 @@ class Perceptron:
         """
 
         # For each data point:
-        for data_point in xrange(len(values)):
+        for data_point in range(len(values)):
+            print('data_point:    ', values[data_point], train[data_point])
             # TODO: Obtain the neuron's prediction for the data_point --> values[data_point]
-            prediction = self.activate(values)
+            prediction = self.activate(values[data_point])
+            print('prediction: ', prediction)
             # Get the prediction accuracy calculated as (expected value - predicted value)
             # expected value = train[data_point], predicted value = prediction
             error = train[data_point] - prediction
+            print('error: ', error)
             # TODO: update self.weights based on the multiplication of:
             # - prediction accuracy(error)
             # - learning rate(eta)
             # - input value(values[data_point])
-            weight_update = eta * error  # TODO
+            weight_update = eta * error * values[data_point]  # TODO
             self.weights += weight_update
-            print self.weights
+            print('weights: ', self.weights)
 
 
 def main():
@@ -70,14 +74,15 @@ def main():
     def sum_almost_equal(array1, array2, tol=1e-6):
         return sum(abs(array1 - array2)) < tol
 
-    p1 = Perceptron(np.array([1, 1, 1]), 0)
-    p1.update(np.array([[2, 0, -3]]), np.array([1]))
-    assert sum_almost_equal(p1.weights, np.array([1.2, 1, 0.7]))
-
+    print(10 * '*')
     p2 = Perceptron(np.array([1, 2, 3]), 0)
     p2.update(np.array([[3, 2, 1], [4, 0, -1]]), np.array([0, 0]))
     assert sum_almost_equal(p2.weights, np.array([0.7, 1.8, 2.9]))
-
+    print(10 * '*')
+    p1 = Perceptron(np.array([1, 1, 1]), 0)
+    p1.update(np.array([[2, 0, -3]]), np.array([1]))
+    assert sum_almost_equal(p1.weights, np.array([1.2, 1, 0.7]))
+    print(10 * '*')
     p3 = Perceptron(np.array([3, 0, 2]), 0)
     p3.update(np.array([[2, -2, 4], [-1, -3, 2], [0, 2, 1]]),
               np.array([0, 1, 0]))
