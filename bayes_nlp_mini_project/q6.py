@@ -66,4 +66,4 @@ def LaterWords(sample, word, distance):
     return {}
 
 
-print(LaterWords(sample_memo, "ahead", 2))
+print(LaterWords(sample_memo, "ahead", 4))
