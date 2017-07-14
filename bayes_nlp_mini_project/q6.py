@@ -11,6 +11,8 @@
 #
 #   You may want to import your code from the previous programming exercise!
 #
+import string
+import itertools
 
 sample_memo = '''
 Milt, we're gonna need to go ahead and move you downstairs into storage B. We 
@@ -31,24 +33,35 @@ Yeah, I'm gonna --- you to go ahead --- --- complain about this. Oh, and if you
 could --- --- and sit at the kids' table, that'd be --- 
 '''
 
-data_list = sample_memo.strip().split()
+data_list = [w.lower().replace('\n', '') for w in sample_memo.split(' ')]
 
 words_to_guess = ["ahead", "could"]
 
 
 def LaterWords(sample, word, distance):
-    '''@param sample: a sample of text to draw from
-    @param word: a word occuring before a corrupted sequence
-    @param distance: how many words later to estimate (i.e. 1 for the next word, 2 for the word after that)
+    """
+    @param sample: a sample of text to draw from
+    @param word: a word occurring before a corrupted sequence
+    @param distance: how many words later to estimate (i.e. 1 for the next
+        word, 2 for the word after that)
     @returns: a single word which is the most likely possibility
-    '''
+    """
+    sample = sample.translate(
+        str.maketrans({k: None for k in string.punctuation}))
+    words = [w.lower().replace('\n', '') for w in sample.split(' ')]
+    # TODO:
+    # Given a word, collect the relative probabilities of possible following
+    # words from @sample. You may want to import your code from the maximum
+    # likelihood exercise.
 
-    # TODO: Given a word, collect the relative probabilities of possible following words
-    # from @sample. You may want to import your code from the maximum likelihood exercise.
+    # TODO:
+    # Repeat the above process--for each distance beyond 1, evaluate
+    # the words that might come after each word, and combine them weighting by
+    # relative probability into an estimate of what might appear next.
 
-    # TODO: Repeat the above process--for each distance beyond 1, evaluate the words that
-    # might come after each word, and combine them weighting by relative probability
-    # into an estimate of what might appear next.
+    chunks = [tuple(y)[:distance] for x, y in
+              itertools.groupby(words, lambda z: z == word) if not x][1:]
+    print(chunks)
 
     return {}
 

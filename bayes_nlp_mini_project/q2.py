@@ -50,7 +50,8 @@ def NextWordProbability(sampletext, word):
     sampletext = sampletext.translate(
         str.maketrans({k: None for k in string.punctuation}))
     words = [w.lower().replace('\n', '') for w in sampletext.split(' ')]
-    words = [words[idx + 1] for idx, word_ in enumerate(words) if word_ == word and idx < len(words) - 1]
+    words = [words[idx + 1] for idx, word_ in enumerate(words) if
+             word_ == word and idx < len(words) - 1]
     word_freq_dict = dict(
         zip(words, [words.count(word) for word in words]))
     return word_freq_dict
