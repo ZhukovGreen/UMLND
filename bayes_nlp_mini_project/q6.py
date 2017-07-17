@@ -59,10 +59,25 @@ def LaterWords(sample, word, distance):
     # the words that might come after each word, and combine them weighting by
     # relative probability into an estimate of what might appear next.
 
-    chunks = [tuple(y)[:distance] for x, y in
-              itertools.groupby(words, lambda z: z == word) if not x][1:]
-    print(chunks)
+    words_matrix = [tuple(y)[:distance] for x, y in
+                    itertools.groupby(words, lambda z: z == word) if not x][1:]
+    words_matrix = [len(words_matrix) * [word]] + [[w[i] for w in words_matrix]
+                                                   for i in range(distance)]
 
+    def get_result(current_layer_num: int, search_word: str):
+        current_layer = words_matrix[current_layer_num]
+        previous_layer = words_matrix[current_layer_num - 1]
+        for unique_word_in_previous_layer in set(previous_layer):
+            prob_word_in_current = 0
+            for word_idx, word_in_current_layer in enumerate(current_layer):
+                if word_in_current_layer == search_word and previous_layer[
+                    word_idx] == unique_word_in_previous_layer:
+                    prob_word_in_current += 1
+            prob_word_in_current = prob_word_in_current / previous_layer.count(
+                unique_word_in_previous_layer)
+            print(prob_word_in_current)
+
+    get_result(1, 'and')
     return {}
 
 
