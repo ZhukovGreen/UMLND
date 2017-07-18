@@ -1,5 +1,6 @@
 # ------------------------------------------------------------------
 
+import itertools
 #
 #   Bayes Optimal Classifier
 #
@@ -12,7 +13,7 @@
 #   You may want to import your code from the previous programming exercise!
 #
 import string
-import itertools
+from pprint import pprint
 
 sample_memo = '''
 Milt, we're gonna need to go ahead and move you downstairs into storage B. We 
@@ -25,12 +26,12 @@ in on Sunday, too... Hello Peter, whats happening? Ummm, I'm gonna need you to
 go ahead and come in tomorrow. So if you could be here around 9 that would be 
 great, mmmk... oh oh! and I almost forgot ahh, I'm also gonna need you to go 
 ahead and come in on Sunday too, kay. We ahh lost some people this week and ah,
-we sorta need to play catch up.
+we sorta need to play catch up. move you to move you to
 '''
 
 corrupted_memo = '''
-Yeah, I'm gonna --- you to go ahead --- --- complain about this. Oh, and if you
-could --- --- and sit at the kids' table, that'd be --- 
+Yeah, I'm gonna xxx you to go ahead xxx xxx complain about this. Oh, and if you
+could xxx xxx and sit at the kids' table, that'd be xxx 
 '''
 
 data_list = [w.lower().replace('\n', '') for w in sample_memo.split(' ')]
@@ -48,6 +49,7 @@ def LaterWords(sample, word, distance):
     """
     sample = sample.translate(
         str.maketrans({k: None for k in string.punctuation}))
+    # sample = sample.translate(None, string.punctuation)
     words = [w.lower().replace('\n', '') for w in sample.split(' ')]
     # TODO:
     # Given a word, collect the relative probabilities of possible following
@@ -64,21 +66,35 @@ def LaterWords(sample, word, distance):
     words_matrix = [len(words_matrix) * [word]] + [[w[i] for w in words_matrix]
                                                    for i in range(distance)]
 
-    def get_result(current_layer_num: int, search_word: str):
+    def prob_of_a_word(current_layer_num, search_word):
+        if current_layer_num == 0:
+            return 1
         current_layer = words_matrix[current_layer_num]
         previous_layer = words_matrix[current_layer_num - 1]
+        prob_word_in_current = 0
         for unique_word_in_previous_layer in set(previous_layer):
-            prob_word_in_current = 0
+            cond_prob_word_in_current = 0
             for word_idx, word_in_current_layer in enumerate(current_layer):
                 if word_in_current_layer == search_word and previous_layer[
                     word_idx] == unique_word_in_previous_layer:
-                    prob_word_in_current += 1
-            prob_word_in_current = prob_word_in_current / previous_layer.count(
-                unique_word_in_previous_layer)
-            print(prob_word_in_current)
+                    cond_prob_word_in_current += 1.0
+            cond_prob_word_in_current = \
+                cond_prob_word_in_current / previous_layer.count(
+                    unique_word_in_previous_layer)
+            if cond_prob_word_in_current:
+                prob_word_in_current += cond_prob_word_in_current * prob_of_a_word(
+                    current_layer_num - 1, unique_word_in_previous_layer)
+        return prob_word_in_current
 
-    get_result(1, 'and')
-    return {}
+    return max([(word_, prob_of_a_word(distance, word_)) for word_ in
+                words_matrix[distance]], key=lambda x: x[1])[0]
 
 
-print(LaterWords(sample_memo, "ahead", 4))
+words = corrupted_memo.split()
+res = []
+for idx, word in enumerate(words):
+    if word == 'xxx':
+        word = LaterWords(sample_memo, words[idx - 1], 1)
+        words[idx] = word
+    res.append(word)
+pprint(' '.join(res))
