@@ -48,11 +48,9 @@ def evaluate(results, accuracy, f1):
 
     # Create figure
     fig, ax = plt.subplots(2, 3, figsize=(11, 7))
-
     # Constants
     bar_width = 0.3
     colors = ['#A00000', '#00A0A0', '#00A000']
-
     # Super loop to plot four panels of data
     for k, learner in enumerate(results.keys()):
         for j, metric in enumerate(
@@ -67,6 +65,7 @@ def evaluate(results, accuracy, f1):
                 ax[int(j / 3), j % 3].set_xticklabels(["1%", "10%", "100%"])
                 ax[int(j / 3), j % 3].set_xlabel("Training Set Size")
                 ax[int(j / 3), j % 3].set_xlim((-0.1, 3.0))
+
 
     # Add unique y-labels
     ax[0, 0].set_ylabel("Time (in seconds)")
