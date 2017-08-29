@@ -11813,7 +11813,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries necessary for this project</span>
@@ -11999,7 +11999,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Total number of records</span>
@@ -12012,7 +12012,7 @@ div#notebook {
 <span class="n">n_at_most_50k</span> <span class="o">=</span> <span class="n">n_records</span> <span class="o">-</span> <span class="n">n_greater_50k</span>
 
 <span class="c1"># TODO: Percentage of individuals whose income is more than $50,000</span>
-<span class="n">greater_percent</span> <span class="o">=</span> <span class="n">n_greater_50k</span> <span class="o">/</span> <span class="n">n_records</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">greater_percent</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="n">n_greater_50k</span> <span class="o">/</span> <span class="n">n_records</span>
 
 <span class="c1"># Print the results</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Total number of records: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_records</span><span class="p">))</span>
@@ -12039,7 +12039,7 @@ div#notebook {
 <pre>Total number of records: 45222
 Individuals making more than $50,000: 11208
 Individuals making at most $50,000: 34014
-Percentage of individuals making more than $50,000: 0.00%
+Percentage of individuals making more than $50,000: 24.78%
 </pre>
 </div>
 </div>
@@ -14347,11 +14347,22 @@ Gradient Boosting Classifier gives the best F0.5 score on the testing set. It  g
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
 Gradient Boosting algorithm is a subclass of boosting algorithms, when hypotesis (weak learner) shortcomings are compensated by an additional model. This additional model being tuned to minimize the training error.  In this way we'll derive a strong learner what is our final hypotesis.</p>
+<p>Gradient Bossting algorithm trained in the following steps:</p>
+<ul>
+<li>Pick an initial learning model which could be very simple, i.e. average value over the labels</li>
+<li>Calculates the error rate over the entire dataset</li>
+<li>Fits the additional model (usually decision tree) to minimize this error</li>
+<li>Updates initial model with the additional model</li>
+<li>Repeat previous steps until converged (the model do not show the imporvement)</li>
+</ul>
+<p>Gradient boosting predicts:
+By plugging new inputs (features) into the result algorithm from training stage.</p>
 <p><strong>References:</strong></p>
 <ol>
 <li><a href="http://www.ccs.neu.edu/home/vip/teach/MLcourse/4_boosting/slides/gradient_boosting.pdf">http://www.ccs.neu.edu/home/vip/teach/MLcourse/4_boosting/slides/gradient_boosting.pdf</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Gradient_boosting">https://en.wikipedia.org/wiki/Gradient_boosting</a></li>
 <li><a href="https://www.quora.com/What-is-an-intuitive-explanation-of-gradient-boosted-trees">https://www.quora.com/What-is-an-intuitive-explanation-of-gradient-boosted-trees</a></li>
+<li><a href="http://www.ccs.neu.edu/home/vip/teach/MLcourse/4_boosting/slides/gradient_boosting.pdf">http://www.ccs.neu.edu/home/vip/teach/MLcourse/4_boosting/slides/gradient_boosting.pdf</a></li>
 </ol>
 
 </div>
@@ -14546,7 +14557,8 @@ Final F-score on the testing data: 0.7806
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong></p>
+<p><strong>Answer: </strong>
+Both unoptimized and optimized model shows the great improve comparing to the naive predictor. Optimized model f score is higher at 3% compraing to the unoptimized model.</p>
 
 </div>
 </div>
@@ -14610,8 +14622,14 @@ Final F-score on the testing data: 0.7806
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong>
-education_num, occupation, workclass, age, marital_status</p>
+<p><strong>Answer:</strong></p>
+<ol>
+<li><strong>education_num</strong>: allow a person to be more efficient at work, by knowing more and use this knowledge to produce better results</li>
+<li><strong>occupation</strong>: occupation defines how are you contributing to the company assets and barier of your intelligence in order to sufficiently cope with your duties.</li>
+<li><strong>workclass</strong>: defines how many additional cells in the chain between final costumer and you. Less cells - bigger monetary flow to you</li>
+<li><strong>age</strong>: linked with ability to think outside the box and expertise</li>
+<li><strong>marital_status</strong>: affects your ability to dedicate time to a work</li>
+</ol>
 
 </div>
 </div>
