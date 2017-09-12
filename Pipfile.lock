@@ -1,0 +1,80 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "7cf4797a74e8d2d9d74747cb825441df7f65440bf3e312e8bf0073df4156ce94"
+        },
+        "requires": {},
+        "sources": [
+            {
+                "url": "https://pypi.python.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "decorator": {
+            "version": "==4.1.2"
+        },
+        "ipython": {
+            "version": "==6.1.0"
+        },
+        "ipython-genutils": {
+            "version": "==0.2.0"
+        },
+        "jedi": {
+            "version": "==0.10.2"
+        },
+        "numpy": {
+            "version": "==1.13.1"
+        },
+        "pandas": {
+            "version": "==0.20.3"
+        },
+        "pexpect": {
+            "version": "==4.2.1"
+        },
+        "pickleshare": {
+            "version": "==0.7.4"
+        },
+        "prompt-toolkit": {
+            "version": "==1.0.15"
+        },
+        "ptyprocess": {
+            "version": "==0.5.2"
+        },
+        "pygments": {
+            "version": "==2.2.0"
+        },
+        "python-dateutil": {
+            "version": "==2.6.1"
+        },
+        "pytz": {
+            "version": "==2017.2"
+        },
+        "scikit-learn": {
+            "version": "==0.19.0"
+        },
+        "scipy": {
+            "version": "==0.19.1"
+        },
+        "setuptools": {
+            "version": "==36.4.0"
+        },
+        "simplegeneric": {
+            "version": "==0.8.1"
+        },
+        "six": {
+            "version": "==1.10.0"
+        },
+        "sklearn": {
+            "version": "==0.0"
+        },
+        "traitlets": {
+            "version": "==4.3.2"
+        },
+        "wcwidth": {
+            "version": "==0.1.7"
+        }
+    },
+    "develop": {}
+}

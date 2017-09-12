@@ -1,0 +1,28 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+
+[requires]
+python_version = "*"
+
+[packages]
+decorator = "*"
+ipython = "*"
+ipython_genutils = "*"
+jedi = "*"
+numpy = "*"
+pandas = "*"
+pexpect = "*"
+pickleshare = "*"
+prompt_toolkit = "*"
+ptyprocess = "*"
+Pygments = "*"
+python-dateutil = "*"
+pytz = "*"
+scikit-learn = "*"
+scipy = "*"
+simplegeneric = "*"
+sklearn = "*"
+traitlets = "*"
+wcwidth = "*"
+matplotlib = "*"
