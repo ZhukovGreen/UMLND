@@ -3,20 +3,21 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 
 [requires]
-python_version = "*"
+python_version = "3.6"
 
 [packages]
+
 decorator = "*"
 ipython = "*"
-ipython_genutils = "*"
+ipython-genutils = "*"
 jedi = "*"
 numpy = "*"
 pandas = "*"
 pexpect = "*"
 pickleshare = "*"
-prompt_toolkit = "*"
+prompt-toolkit = "*"
 ptyprocess = "*"
-Pygments = "*"
+pygments = "*"
 python-dateutil = "*"
 pytz = "*"
 scikit-learn = "*"
@@ -26,3 +27,4 @@ sklearn = "*"
 traitlets = "*"
 wcwidth = "*"
 matplotlib = "*"
+pillow = "*"
